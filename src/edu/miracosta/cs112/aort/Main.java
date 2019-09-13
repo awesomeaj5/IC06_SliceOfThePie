@@ -7,27 +7,31 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        int count = 0;
-        double price, average, lowest=Double.MAX_VALUE, highest=Double.MIN_VALUE,total = 0;
-        String line, name, lowestName, highestName;
-        String[] parts;
-        //Max value since zero would be lowest value
-        //min value for opposite reason
-        try {
-
-            Scanner file = new Scanner(new File("USPizzaDataset.csv"));
-            if (file.hasNextLine())
-                file.nextLine();
-            while(file.hasNextLine())
+double amount, total = 0, average = 0,  highest = Double.MIN_VALUE, lowest = Double.MAX_VALUE;
+        try{
+            Scanner file = new Scanner(new File ("USPizzaDataset.csv"));
+            String [] parts;
+            while(file.hasNext())
             {
-                line = file.nextLine();
-                parts = line.split(",");
+              String line = file.nextLine();
+              parts = line.split(",");
+                for (int i = 0; i< parts.length; i++)
+                {
+                    amount = Double.parseDouble(parts[6]);
+                 if(amount > highest)
+                 highest = amount;
+                 if (amount < lowest)
+                     lowest = amount;
+                }
+
             }
-            //Close file
+            System.out.println(lowest);
+            System.out.println(highest);
             file.close();
-        }catch(FileNotFoundException e)
+
+        }catch (FileNotFoundException e)
         {
-            System.err.println("File can not be found");
+            System.err.println("error");
         }
     }
 }
