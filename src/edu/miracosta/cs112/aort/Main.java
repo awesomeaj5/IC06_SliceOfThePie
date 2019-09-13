@@ -7,24 +7,33 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-double amount, total = 0, average = 0,  highest = Double.MIN_VALUE, lowest = Double.MAX_VALUE;
+double amount=0 , total = 0, average = 0,  highest = Double.MIN_VALUE, lowest = Double.MAX_VALUE;
+String lowestName, highestName, name;
         try{
             Scanner file = new Scanner(new File ("USPizzaDataset.csv"));
             String [] parts;
-            while(file.hasNext())
+            if(file.hasNextLine())
+                file.nextLine();
+            while(file.hasNextLine())
             {
+
               String line = file.nextLine();
               parts = line.split(",");
+                amount++;
                 for (int i = 0; i< parts.length; i++)
                 {
-                    amount = Double.parseDouble(parts[6]);
-                 if(amount > highest)
-                 highest = amount;
-                 if (amount < lowest)
-                     lowest = amount;
+
+                   total = Double.parseDouble(parts[6]);
+                 if(total > highest)
+                 highest = total;
+                 if (total < lowest)
+                     lowest = total;
+                 name = parts[9];
+                 lowestName = ;
                 }
 
             }
+            System.out.println(amount);
             System.out.println(lowest);
             System.out.println(highest);
             file.close();
